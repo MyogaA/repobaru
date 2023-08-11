@@ -65,8 +65,8 @@ projectForm.addEventListener('submit', function (event) {
           <div class="project-image">
             <img src="${project.imageUrl}" alt="">
           </div>
-          <div class="text-content">
-            <h4 style="float: left; padding-left: 20px;"><a style="text-decoration: none; color: black;" href="detail.html">${project.projectName}</a></h4>
+          <div class="text-content" style="display: flex; flex-direction:column;">
+            <h4 style="padding-left: 20px;"><a style="text-decoration: none; color: black;" href="detail.html">${project.projectName}</a></h4>
             <div class="project-details">
               ${day} / ${bulan[month]} / ${year} ${hour}:${minute}
               ${durationHTML}
