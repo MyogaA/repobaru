@@ -111,9 +111,7 @@ projectForm.addEventListener('submit', function (event) {
   if (minute < 10) minute = `0${minute}`;
 
 
-  bulan.forEach((value, index) => {
-    console.log(value, index);
-  });
+
   for (let i = 0; i < bulan.length; i++) {
     console.log()
   }
