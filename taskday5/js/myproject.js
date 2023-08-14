@@ -8,7 +8,8 @@ const projectCards = document.getElementById('project-card');
 
 const projects = [];
 
-projectForm.addEventListener('submit', function (event) {
+projectForm.addEventListener('button', function (event) {
+  event.preventDefault();
 
   const projectName = projectNameInput.value;
   const startDate = startDateInput.value;
@@ -96,9 +97,6 @@ projectForm.addEventListener('submit', function (event) {
   if (minute < 10) minute = `0${minute}`;
 
 
-  bulan.forEach((value, index) => {
-    console.log(value, index);
-  });
   for (let i = 0; i < bulan.length; i++) {
     console.log()
   }
