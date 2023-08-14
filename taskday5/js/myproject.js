@@ -24,7 +24,7 @@ projectForm.addEventListener('button', function (event) {
     const nodejs = document.getElementById('nodejs').checked ? '<i class="fa-brands fa-node-js"></i>' : '';
     const Reactjs = document.getElementById('reactjs').checked ? '<i class="fa-brands fa-react"></i>' : '';
     const nextjs = document.getElementById('nextjs').checked ? '<i class="fa-brands fa-android"></i>' : '';
-    const typescript = document.getElementById('typescript').checked ? '<i class="fa-brands fa-java"></i>' : '';
+    const typescript = document.getElementById('typescript').checked ? '<i class="fa-brands fa-typescript"></i>' : '';
 
     const newProject = {
       projectName: projectName,
