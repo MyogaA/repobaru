@@ -1,13 +1,12 @@
 const express = require('express');
 const app = express();
-const PORT = 5001;
+const PORT = 5000;
 const path = require('path');
 
 app.set('view engine', 'hbs');
-app.set('views', path.join(__dirname, 'src/views'));
+app.set('views', path.join(__dirname, 'src', 'views'));
 
-app.use(express.static('src/assets'));
-
+app.use(express.static(path.join(__dirname, 'src', 'assets')));
 app.use(express.urlencoded({ extended: false }));
 
 const dataProject = [
@@ -32,8 +31,8 @@ app.get('/contact', contact);
 app.get('/detail/:id', detail);
 app.get('/testimonial', testimonial);
 app.get('/edit/:id', edit);
-app.get('/delete/:id', deleteProject)
-app.post('/edit/:id', updateProject);
+app.get('/delete/:id', deleteProject);
+app.post('/update/:id', updateProject);
 
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
@@ -65,12 +64,13 @@ function detail(req, res) {
 function testimonial(req, res) {
     res.render('testimonial');
 }
+
 function edit(req, res) {
     const { id } = req.params;
 
     if (id >= 0 && id < dataProject.length) {
         const data = dataProject[id];
-        res.render('/edit', { data });
+        res.render('edit', { data, id });
     } else {
         res.send('Invalid ID');
     }
@@ -88,12 +88,18 @@ function addMyproject(req, res) {
     dataProject.push(data);
     res.redirect('/index');
 }
-function deleteProject(req,res) {
-    const { id } = req.params
-    dataProject.splice(id, 1);
-    res.redirect('/index')
-  }
-  function updateProject(req, res) {
+
+function deleteProject(req, res) {
+    const { id } = req.params;
+    if (id >= 0 && id < dataProject.length) {
+        dataProject.splice(id, 1);
+        res.redirect('/index');
+    } else {
+        res.send('Invalid ID');
+    }
+}
+
+function updateProject(req, res) {
     const { id } = req.params;
     const { title, content } = req.body;
 
