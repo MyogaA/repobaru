@@ -44,7 +44,7 @@
         <div class="addmyproject">
             <div class="container">
                 <h1>Add addmyproject</h1>
-                <form id="project-form" action="#" method="POST">
+                <form id="project-form" action="/addmyproject" method="POST" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="">Project Name</label>
                         <input type="text" id="projectname" name="title" required
@@ -55,31 +55,12 @@
                         <textarea id="message" name="content" required
                             oninput="this.style.borderColor = '';"></textarea>
                     </div>
-                    <label style="font-weight: bold;" for="checkbox">Technologies</label>
-                    <div class="card checkbox-card flex-row">
-                        <div class="checkbox-item">
-                            <input type="checkbox" name="nodejs" id="nodejs">
-                            <label for="nodejs">nodejs</label>
-                        </div>
-                        <div class="checkbox-item">
-                            <input type="checkbox" name="reactjs" id="reactjs">
-                            <label for="reactjs">react js</label>
-                        </div>
-                        <div class="checkbox-item">
-                            <input type="checkbox" name="nextjs" id="nextjs">
-                            <label for="nextjs">next js</label>
-                        </div>
-                        <div class="checkbox-item">
-                            <input type="checkbox" name="typescript" id="typescript">
-                            <label for="typescript">typescript</label>
-                        </div>
-                    </div>
                     <label style="font-weight: bold;" for="upload-img">Upload image</label>
                     <div class="image">
                         <label for="image">
                             attach file
                         </label>
-                        <input type="file" name="input-image" id="input-img">
+                        <input type="file" name="image" id="input-img">
                     </div>
                     <button type="submit" id="button" class="submit-btn">Submit</button>
                 </form>
