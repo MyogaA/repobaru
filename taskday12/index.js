@@ -93,7 +93,7 @@ function edit(req, res) {
 
 function addMyproject(req, res) {
     const { title, content } = req.body;
-    const image = req.file ? req.file.filename : "statis.jpg"; // Ganti "default-image.jpg" dengan nama default gambar
+    const image = req.file ? req.file.filename : "statis.jpg"; // Ganti "statis-image.jpg" dengan nama default gambar
     const data = {
         title,
         content,
