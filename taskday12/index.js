@@ -11,14 +11,14 @@ app.use(express.urlencoded({ extended: false }));
 
 const dataProject = [
     {
-        title: "Yoga ganteng",
-        content: "Yoga adalah manusia yang ganteng",
+        title: "Yoga atmajaya",
+        content: "mantap",
         author: "Penggemar",
         postAt: new Date()
     },
     {
-        title: "Yoga ganteng bgt",
-        content: "Yoga tetaplah ganteng",
+        title: "izma wulan",
+        content: "heehhe",
         author: "Penggemar Setia",
         postAt: new Date()
     }
