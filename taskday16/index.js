@@ -71,7 +71,7 @@ app.post('/register', register);
 app.get('/login', formLogin);
 app.post('/login', login);
 app.get('/logout', logout);
-app.post('/update/:id', updateProject);
+app.post('/update/:id',upload.single('image'), updateProject);
 
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
@@ -93,7 +93,7 @@ function contact(req, res) {
 }
 async function myProject(req, res) {
     try {
-        const query = `SELECT blogs.id, title, image, content, blogs."createdAt", users.name AS author, blogs.author AS authorId FROM blogs JOIN users ON blogs.author = users.id ORDER BY blogs.id DESC;`
+        const query = `SELECT blogs.id, title, image, content, blogs."createdAt", users.name AS author FROM blogs LEFT JOIN users ON blogs.author = users.id ORDER BY blogs.id DESC;`
         let obj = await sequelize.query(query, { type: QueryTypes.SELECT})
 
         const data = obj.map(res => ({
@@ -102,8 +102,8 @@ async function myProject(req, res) {
         }));
 
         if (req.session.isLogin) {
-            const idUser = req.session.idUser; 
-            const userProjects = data.filter(item => item.id === idUser);
+            const idUser = req.session.user; 
+            const userProjects = data.filter(item => item.author === idUser);
             res.render('myproject', { 
                 data: userProjects,
                 isLogin: req.session.isLogin,
@@ -120,9 +120,6 @@ async function myProject(req, res) {
         console.log(error);
     } 
 }
-
-
-
 
 
 
@@ -193,10 +190,11 @@ async function updateProject(req, res) {
     try {
         const { id } = req.params;
         const { title, content } = req.body;
+        const image = req.file ? req.file.filename : "img.jpg";
 
 
         await sequelize.query(
-            `UPDATE blogs SET title = '${title}', content = '${content}', "updatedAt" = NOW() WHERE id = ${id}`
+            `UPDATE blogs SET title = '${title}', content = '${content}',image = '${image}', "updatedAt" = NOW() WHERE id = ${id}`
         );
 
         res.redirect('/myproject');
